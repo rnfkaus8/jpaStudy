@@ -17,7 +17,10 @@ public class JpaMain {
 
         try {
 //            Member findMember = em.find(Member.class, 2L);
-            List<Member> findMembers = em.createQuery("select m from Member as m", Member.class).getResultList();
+            List<Member> findMembers = em.createQuery("select m from Member as m", Member.class)
+                    .setFirstResult(0)
+                    .setMaxResults(10)
+                    .getResultList();
 
             System.out.println("findMembers = " + findMembers);
 
