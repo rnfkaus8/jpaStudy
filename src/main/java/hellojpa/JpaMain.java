@@ -19,7 +19,7 @@ public class JpaMain {
 
             // 비영속 상태
             Member member = new Member();
-            member.setId(3L);
+            member.setId(4L);
             member.setName("member3");
             
             // 영속 상태
@@ -27,7 +27,10 @@ public class JpaMain {
             em.persist(member);
             System.out.println("---AFTER---");
 
+            Member findMember = em.find(Member.class, 4L);
 
+            System.out.println("findMember.getId() = " + findMember.getId());
+            System.out.println("findMember.getName() = " + findMember.getName());
             tx.commit();
         } catch (Exception e){
             tx.rollback();
