@@ -17,20 +17,10 @@ public class JpaMain {
 
         try {
 
-            // 비영속 상태
-            Member member = new Member();
-            member.setId(4L);
-            member.setName("member3");
-            
-            // 영속 상태
-            System.out.println("---BEFORE---");
-            em.persist(member);
-            System.out.println("---AFTER---");
+            // 영속
+            Member findMember1 = em.find(Member.class, 4L);
+            Member findMember2 = em.find(Member.class, 4L);
 
-            Member findMember = em.find(Member.class, 4L);
-
-            System.out.println("findMember.getId() = " + findMember.getId());
-            System.out.println("findMember.getName() = " + findMember.getName());
             tx.commit();
         } catch (Exception e){
             tx.rollback();
