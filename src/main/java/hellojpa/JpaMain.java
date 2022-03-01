@@ -17,11 +17,11 @@ public class JpaMain {
 
         try {
 
-            Member member1 = new Member(150L, "member1");
-            Member member2 = new Member(160L, "member2");
+            Member findMember = em.find(Member.class, 150L);
+            System.out.println("findMember.getName() = " + findMember.getName());
 
-            em.persist(member1);
-            em.persist(member2);
+            findMember.setName("changeMemberName1");
+
             System.out.println("====================");
             tx.commit();
         } catch (Exception e){
