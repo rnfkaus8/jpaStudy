@@ -9,7 +9,7 @@ public class Member {
     @Id
     private Long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, columnDefinition = "varchar(100) default 'EMPTY'")
     private String username;
 
     private Integer age;
