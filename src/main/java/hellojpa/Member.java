@@ -9,7 +9,7 @@ public class Member {
     @Id
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "name", updatable = false)
     private String username;
 
     private Integer age;
