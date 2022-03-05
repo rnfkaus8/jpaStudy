@@ -8,6 +8,7 @@ import java.util.Date;
 public class Member {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "name", nullable = false, columnDefinition = "varchar(100) default 'EMPTY'")
