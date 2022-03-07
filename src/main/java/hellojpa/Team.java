@@ -1,20 +1,17 @@
-package jpabook.jpashop.domain;
+package hellojpa;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-//@Entity
-public class Item {
-
+@Entity
+public class Team {
     @Id @GeneratedValue
-    @Column(name = "ITEM_ID")
+    @Column(name = "TEAM_ID")
     private Long id;
 
     private String name;
-    private int price;
-    private int stockQuantity;
 
     public Long getId() {
         return id;
@@ -30,21 +27,5 @@ public class Item {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public int getStockQuantity() {
-        return stockQuantity;
-    }
-
-    public void setStockQuantity(int stockQuantity) {
-        this.stockQuantity = stockQuantity;
     }
 }
