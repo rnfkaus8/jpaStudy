@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Date;
 
-//@Entity
+@Entity
 public class Member {
 
     @Id @GeneratedValue
@@ -13,9 +13,6 @@ public class Member {
 
     @Column(name = "USERNAME")
     private String username;
-
-//    @Column(name = "TEAM_ID")
-//    private Long teamId;
 
     @ManyToOne
     @JoinColumn(name = "TEAM_ID")
@@ -41,8 +38,4 @@ public class Member {
         return team;
     }
 
-    public void changeTeam(Team team) {
-        this.team = team;
-        team.getMembers().add(this);
-    }
 }
