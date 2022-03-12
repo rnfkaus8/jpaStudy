@@ -17,22 +17,29 @@ public class JpaMain {
 
         try {
 
-            //저장
+            Locker locker = new Locker();
+            locker.setName("LOCKER1");
 
-
-            Team team = new Team();
-            team.setName("TeamA");
-            em.persist(team);
+            em.persist(locker);
 
             Member member = new Member();
-            member.setUsername("Member1");
-            member.changeTeam(team);
+            member.setUsername("member1");
+            member.setLocker(locker);
             em.persist(member);
 
+            Team team = new Team();
+            team.setName("teamA");
+            team.getMembers().add(member);
+
+            em.persist(team);
 
             em.flush();
             em.clear();
 
+            Member findMember = em.find(Member.class, member.getId());
+            System.out.println("findMember.getLocker().getName() = " + findMember.getLocker().getName());
+            
+            
 
 
             tx.commit();

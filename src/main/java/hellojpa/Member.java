@@ -14,6 +14,9 @@ public class Member {
     @Column(name = "USERNAME")
     private String username;
 
+    @OneToOne
+    @JoinColumn(name = "LOCKER_ID")
+    private Locker locker;
 
     @ManyToOne
     @JoinColumn(name = "TEAM_ID", insertable = false, updatable = false)
@@ -35,5 +38,19 @@ public class Member {
         this.username = username;
     }
 
+    public Locker getLocker() {
+        return locker;
+    }
 
+    public void setLocker(Locker locker) {
+        this.locker = locker;
+    }
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
 }
