@@ -14,7 +14,6 @@ public class JpaMain {
     public static void main(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
         EntityManager em = emf.createEntityManager();
-
         EntityTransaction tx = em.getTransaction();
         tx.begin();
 
@@ -22,7 +21,7 @@ public class JpaMain {
             // 에제 코드
             Order order = new Order();
             order.addOrderItem(new OrderItem());
-
+//            em.persist(order);
 
             tx.commit();
         } catch (Exception e){
