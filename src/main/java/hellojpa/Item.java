@@ -3,7 +3,7 @@ package hellojpa;
 import javax.persistence.*;
 
 @Entity(name = "BASIC_ITEM")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "DTYPE")
 public class Item {
 
