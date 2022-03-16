@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity(name = "BASIC_MEMBER")
-public class Member {
+public class Member extends BaseEntity{
 
     @Id @GeneratedValue
     @Column(name="MEMBER_ID")
