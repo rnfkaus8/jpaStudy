@@ -1,15 +1,11 @@
-package hellojpa;
+package jpabook.jpashop.domain;
 
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
-@Entity(name = "BASIC_MOVIE")
-@DiscriminatorValue("M")
+@Entity(name = "SHOP_MOVIE")
 public class Movie extends Item{
-
     private String director;
     private String actor;
-
 
     public String getDirector() {
         return director;
