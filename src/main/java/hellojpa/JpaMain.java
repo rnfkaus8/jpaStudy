@@ -18,31 +18,15 @@ public class JpaMain {
 
         try {
 
-            Team teamA = new Team();
-            teamA.setName("teamA");
-            em.persist(teamA);
-            Team teamB = new Team();
-            teamB.setName("teamB");
-            em.persist(teamB);
+            Child child1 = new Child();
+            Child child2 = new Child();
 
+            Parent parent = new Parent();
 
-            Member member1 = new Member();
-            member1.setUsername("Hello1");
-            member1.setTeam(teamA);
-            em.persist(member1);
+            parent.addChild(child1);
+            parent.addChild(child2);
 
-            Member member2 = new Member();
-            member2.setUsername("Hello1");
-            member2.setTeam(teamB );
-            em.persist(member2);
-
-            em.flush();
-            em.clear();
-
-            List<Member> members = em.createQuery("select m from BASIC_MEMBER m", Member.class)
-                    .getResultList();
-            // SQL : select * from Member;
-            // SQL : select * from Team where TEAM_ID= #teamId#
+            em.persist(parent);
 
             tx.commit();
         } catch (Exception e){
