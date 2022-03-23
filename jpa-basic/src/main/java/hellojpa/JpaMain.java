@@ -17,13 +17,7 @@ public class JpaMain {
         tx.begin();
 
         try {
-            List<Member> memberList = em.createQuery(
-                    "select m From BASIC_MEMBER m where m.username like '%kim%'", Member.class
-            ).getResultList();
 
-            for (Member member : memberList) {
-
-            }
             tx.commit();
         } catch (Exception e){
             tx.rollback();
