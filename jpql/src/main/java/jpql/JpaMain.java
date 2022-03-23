@@ -18,16 +18,10 @@ public class JpaMain {
             member.setAge(10);
             em.persist(member);
 
-            TypedQuery<Member> query1 = em.createQuery("select m from Member m", Member.class);
-            List<Member> resultList = query1.getResultList();
-
-            for (Member findMember : resultList) {
-                System.out.println("findMember.getUsername() = " + findMember.getUsername());
-            }
-
-            TypedQuery<Member> query2 = em.createQuery("select m from Member m", Member.class);
-            Member singleResult = query2.getSingleResult();
-            System.out.println("singleResult.getUsername() = " + singleResult.getUsername());
+            Member singleResult = em.createQuery("select m from Member m where m.username = :username", Member.class)
+                    .setParameter("username", "member1")
+                    .getSingleResult();
+            System.out.println("singleResult = " + singleResult);
 
 
             tx.commit();
