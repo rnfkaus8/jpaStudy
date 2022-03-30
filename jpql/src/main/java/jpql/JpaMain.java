@@ -15,30 +15,39 @@ public class JpaMain {
 
         try {
 
+            Team teamA = new Team();
+            teamA.setName("TeamA");
+            em.persist(teamA);
+            Team teamB = new Team();
+            teamB.setName("TeamB");
+            em.persist(teamB);
+
+
             Member member1 = new Member();
             member1.setUsername("member1");
+            member1.setTeam(teamA);
             em.persist(member1);
 
             Member member2 = new Member();
             member2.setUsername("member2");
+            member2.setTeam(teamA);
             em.persist(member2);
+
+            Member member3 = new Member();
+            member3.setUsername("member3");
+            member3.setTeam(teamB);
+            em.persist(member3);
 
             em.flush();
             em.clear();
 
+            String query = "select m from Member m join fetch m.team";
 
-            // 상태필드
-//            String query = "select m.username from Member m";
+            List<Member> resultList = em.createQuery(query, Member.class).getResultList();
 
-            // 단일 값 연관 경로
-//            String query = "select m.team from Member m";
+            for (Member member : resultList) {
+                System.out.println("member = " + member.getUsername() + ", " + member.getTeam().getName());
 
-            // 컬렉션 값 연관 경로
-            String query = "select t.members from Team t";
-            Collection resultList = em.createQuery(query, Collection.class).getResultList();
-
-            for (Object o : resultList) {
-                System.out.println("o = " + o);
             }
             tx.commit();
         } catch (Exception e){
