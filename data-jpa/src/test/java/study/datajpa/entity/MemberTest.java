@@ -51,10 +51,10 @@ class MemberTest {
 //        }
         findMembers.stream().forEach(member -> {
             if(member.getAge() <= 20){
-                assertThat(member.getTeam().getId()).isEqualTo(teamA.getId());
+                assertThat(member.getTeam().getName()).isEqualTo(teamA.getName());
                 assertThat(member.getTeam()).isNotEqualTo(teamA);
             }else{
-                assertThat(member.getTeam().getId()).isEqualTo(teamB.getId());
+                assertThat(member.getTeam().getName()).isEqualTo(teamB.getName());
                 assertThat(member.getTeam()).isNotEqualTo(teamB);
             }
         });
