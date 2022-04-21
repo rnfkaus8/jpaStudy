@@ -1,14 +1,10 @@
 package study.datajpa.repository;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 import study.datajpa.entity.Team;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 import java.util.Arrays;
 import java.util.List;
@@ -45,7 +41,7 @@ class TeamRepositoryTest {
         teamRepository.delete(teamA);
         assertThat(teamRepository.count()).isEqualTo(0);
     }
-    
+
     @Test
     void findAllAndCount() throws Exception{
         //given
@@ -62,7 +58,4 @@ class TeamRepositoryTest {
         assertThat(count).isEqualTo(2);
 
     }
-
-
-
 }
