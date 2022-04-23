@@ -111,4 +111,18 @@ class MemberJpaRepositoryTest {
         assertThat(findMembers.get(0).getAge()).isEqualTo(20);
 
     }
+
+    @Test
+    void findByUsername() throws Exception{
+        //given
+        Member member1 = new Member("member1");
+        Member member2 = new Member("member2");
+        memberJpaRepository.save(member1);
+        memberJpaRepository.save(member2);
+        //when
+        List<Member> findMembers = memberJpaRepository.findByUsername("member1");
+        //then
+        assertThat(findMembers).hasSameElementsAs(Arrays.asList(member1));
+    }
+
 }
