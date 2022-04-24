@@ -65,4 +65,17 @@ class MemberRepositoryTest {
         assertThat(findMembers).hasSameElementsAs(Arrays.asList(member1));
     }
 
+    @Test
+    void findUser() throws Exception{
+        //given
+        Member member1 = new Member("member1", 10);
+        Member member2 = new Member("member2", 20);
+        memberRepository.save(member1);
+        memberRepository.save(member2);
+        //when
+        List<Member> findMembers = memberRepository.findUser("member1", 10);
+        //then
+        assertThat(findMembers).hasSameElementsAs(Arrays.asList(member1));
+    }
+
 }
