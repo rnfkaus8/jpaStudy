@@ -13,6 +13,7 @@ import study.datajpa.entity.Team;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -137,6 +138,23 @@ class MemberRepositoryTest {
         });
         //then
         assertThat(findMembers).hasSameElementsAs(Arrays.asList(member1, member2));
+    }
+
+    @Test
+    void returnTypeTest() throws Exception{
+        //given
+        Member member1 = new Member("member1", 10);
+        Member member2 = new Member("member2", 20);
+        memberRepository.save(member1);
+        memberRepository.save(member2);
+        //when
+        List<Member> findMembers = memberRepository.findListByUsername("member1");
+        Member findMember = memberRepository.findMemberByUsername("member1");
+        Optional<Member> findMemberOptional = memberRepository.findOptionalByUsername("member1");
+        //then
+        assertThat(findMembers).hasSameElementsAs(Arrays.asList(member1));
+        assertThat(findMember).isEqualTo(member1);
+        assertThat(findMemberOptional.orElseThrow()).isEqualTo(member1);
     }
 
 }
