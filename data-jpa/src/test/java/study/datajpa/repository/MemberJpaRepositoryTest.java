@@ -126,7 +126,7 @@ class MemberJpaRepositoryTest {
     }
 
     @Test
-    public void paging() throws Exception {
+    public void pagingTest() throws Exception {
         //given
         memberJpaRepository.save(new Member("member1", 10));
         memberJpaRepository.save(new Member("member2", 10));
