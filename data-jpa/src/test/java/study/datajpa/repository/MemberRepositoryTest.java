@@ -14,6 +14,8 @@ import study.datajpa.dto.MemberDto;
 import study.datajpa.entity.Member;
 import study.datajpa.entity.Team;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
@@ -32,6 +34,9 @@ class MemberRepositoryTest {
 
     @Autowired
     private TeamRepository teamRepository;
+
+    @PersistenceContext
+    private EntityManager em;
 
     @Test
     void memberTest() throws Exception{
@@ -252,6 +257,34 @@ class MemberRepositoryTest {
         //then
         assertThat(resultCount).isEqualTo(3);
         assertThat(member.getAge()).isEqualTo(41);
+    }
+
+    @Test
+    void findMemberLazy(){
+        //given
+        Team teamA = new Team("teamA");
+        Team teamB = new Team("teamB");
+        teamRepository.save(teamA);
+        teamRepository.save(teamB);
+        Member member1 = new Member("member1", 10, teamA);
+        Member member2 = new Member("member2", 10, teamB);
+        memberRepository.save(member1);
+        memberRepository.save(member2);
+
+        em.flush();
+        em.clear();
+
+        //when
+        List<Member> findMembers = memberRepository.findAll();
+
+        for (Member member : findMembers) {
+            System.out.println("member.getUsername() = " + member.getUsername());
+            System.out.println("member.getTeam().getClass() = " + member.getTeam().getClass());
+            System.out.println("member.getTeam().getName() = " + member.getTeam().getName());
+        }
+
+        //then
+
     }
 
 }
