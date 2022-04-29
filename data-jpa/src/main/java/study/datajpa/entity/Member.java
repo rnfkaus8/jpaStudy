@@ -14,7 +14,7 @@ import static javax.persistence.FetchType.LAZY;
         name = "Member.findByUsername",
         query = "select m from Member m where username = :username"
 )
-public class Member {
+public class Member extends JpaBaseEntity {
 
     @Id @GeneratedValue
     @Column(name = "member_id")
